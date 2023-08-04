@@ -6,6 +6,7 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [effectCall, setEffectCall] = useState([""]);
 
   useEffect(() => {
@@ -13,12 +14,13 @@ const AuthProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         setTasks(data);
+        setIsLoading(false);
       });
   }, [effectCall]);
 
   console.log(tasks);
 
-  const authInfo = { tasks, setTasks, setEffectCall };
+  const authInfo = { tasks, setTasks, setEffectCall, isLoading };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

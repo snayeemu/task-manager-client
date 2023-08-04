@@ -1,4 +1,4 @@
-import { Card, Typography } from "@material-tailwind/react";
+import { Card, Spinner, Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { MdOutlineDoneAll } from "react-icons/md";
@@ -9,7 +9,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 const TABLE_HEAD = ["TITLE", "STATUS", "ACTION", ""];
 
 const ShowTasks = () => {
-  const { tasks, setTasks, setEffectCall } = useContext(AuthContext);
+  const { tasks, setTasks, setEffectCall, isLoading } = useContext(AuthContext);
 
   const handleDelete = (_id) => {
     fetch(`https://manage-task-server.vercel.app/delete/${_id}`, {
@@ -31,6 +31,14 @@ const ShowTasks = () => {
         setEffectCall([""]);
       });
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center ml-[50vh] lg:ml-[80vh]">
+        <Spinner color="green" className="h-12 w-12 mx-auto" />
+      </div>
+    );
+  }
 
   return (
     <Card className="h-full w-full overflow-scroll mt-4">
