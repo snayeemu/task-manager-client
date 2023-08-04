@@ -12,6 +12,7 @@ import {
 import { AiFillFileAdd } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import logo from "../../assets/logo.png";
 
 const MobileSideBar = () => {
   const [open, setOpen] = React.useState(false);
@@ -46,7 +47,7 @@ const MobileSideBar = () => {
       <Drawer open={open} onClose={closeDrawer}>
         <div className="mb-2 flex items-center justify-between p-4">
           <div className="mb-2 flex items-center gap-4 p-4">
-            <img src="/src/assets/logo.png" alt="brand" className="h-8 w-8" />
+            <img src={logo} alt="brand" className="h-8 w-8" />
             <Typography variant="h5" color="blue-gray">
               ManageTask
             </Typography>

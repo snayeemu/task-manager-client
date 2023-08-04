@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { createContext } from "react";
 
@@ -8,7 +9,7 @@ const AuthProvider = ({ children }) => {
   const [effectCall, setEffectCall] = useState([""]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/tasks/john.doe@example.com")
+    fetch("https://manage-task-server.vercel.app/tasks/john.doe@example.com")
       .then((res) => res.json())
       .then((data) => {
         setTasks(data);

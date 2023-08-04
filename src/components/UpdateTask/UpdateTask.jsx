@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useParams } from "react-router-dom";
@@ -20,7 +19,7 @@ const UpdateTask = () => {
     };
     console.log(updatedTask);
 
-    fetch(`http://localhost:5000/update-task/${id}`, {
+    fetch(`https://manage-task-server.vercel.app/update-task/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
