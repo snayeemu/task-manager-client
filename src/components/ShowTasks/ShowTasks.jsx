@@ -97,7 +97,7 @@ const ShowTasks = () => {
                       </button>
                     </span>
                     <span className=" flex">
-                      <Link to={"/"}>
+                      <Link to={`/update-task/${_id}`}>
                         <AiFillEdit className="text-white text-2xl hover:scale-95 hover:bg-green-900 bg-[#de7923] rounded-md p-1" />
                       </Link>
                     </span>

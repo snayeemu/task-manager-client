@@ -1,25 +1,36 @@
-const AddTask = () => {
+import { data } from "autoprefixer";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { useParams } from "react-router-dom";
+
+const UpdateTask = () => {
+  const { tasks, setEffectCall } = useContext(AuthContext);
+  const { id } = useParams();
+  console.log(id);
+  const task = tasks.find((task) => task._id === id);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const title = form.title.value;
     const description = form.description.value;
-    const newTask = {
-      user: "john.doe@example.com",
+    const updatedTask = {
       title,
       description,
-      status: "pending",
     };
-    console.log(newTask);
+    console.log(updatedTask);
 
-    fetch("http://localhost:5000/add-task", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newTask),
+    fetch(`http://localhost:5000/update-task/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedTask),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        setEffectCall([""]);
       });
 
     form.reset();
@@ -28,10 +39,10 @@ const AddTask = () => {
   return (
     <div className="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none mx-auto mt-4">
       <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-        Add a Task
+        Update this Task
       </h4>
       <p className="mt-1 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
-        Enter your task information.
+        Edit your task information.
       </p>
       <form
         onSubmit={handleSubmit}
@@ -41,6 +52,7 @@ const AddTask = () => {
           <div className="relative h-11 w-full min-w-[200px]">
             <input
               className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+              defaultValue={task?.title || ""}
               placeholder=" "
               name="title"
             />
@@ -52,6 +64,7 @@ const AddTask = () => {
             <div className="relative w-full min-w-[200px]">
               <textarea
                 className="peer h-full min-h-[100px] w-full resize-none rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
+                defaultValue={task?.description || ""}
                 placeholder=" "
                 name="description"
               ></textarea>
@@ -67,11 +80,11 @@ const AddTask = () => {
           type="submit"
           data-ripple-light="true"
         >
-          ADD TASK
+          Update
         </button>
       </form>
     </div>
   );
 };
 
-export default AddTask;
+export default UpdateTask;
