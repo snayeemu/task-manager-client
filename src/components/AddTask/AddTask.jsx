@@ -12,7 +12,7 @@ const AddTask = () => {
     };
     console.log(newTask);
 
-    fetch("https://manage-task-server.vercel.app/add-task", {
+    fetch("https://manage-task-server-snayeemu.vercel.app/add-task", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newTask),

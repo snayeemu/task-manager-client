@@ -12,7 +12,7 @@ const ShowTasks = () => {
   const { tasks, setTasks, setEffectCall, isLoading } = useContext(AuthContext);
 
   const handleDelete = (_id) => {
-    fetch(`https://manage-task-server.vercel.app/delete/${_id}`, {
+    fetch(`https://manage-task-server-snayeemu.vercel.app/delete/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -22,7 +22,7 @@ const ShowTasks = () => {
   };
 
   const handleCompleted = (_id) => {
-    fetch(`https://manage-task-server.vercel.app/update/${_id}`, {
+    fetch(`https://manage-task-server-snayeemu.vercel.app/update/${_id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())

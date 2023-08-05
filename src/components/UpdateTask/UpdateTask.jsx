@@ -19,7 +19,7 @@ const UpdateTask = () => {
     };
     console.log(updatedTask);
 
-    fetch(`https://manage-task-server.vercel.app/update-task/${id}`, {
+    fetch(`https://manage-task-server-snayeemu.vercel.app/update-task/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

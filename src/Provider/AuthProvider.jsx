@@ -10,7 +10,9 @@ const AuthProvider = ({ children }) => {
   const [effectCall, setEffectCall] = useState([""]);
 
   useEffect(() => {
-    fetch("https://manage-task-server.vercel.app/tasks/john.doe@example.com")
+    fetch(
+      "https://manage-task-server-snayeemu.vercel.app/tasks/john.doe@example.com"
+    )
       .then((res) => res.json())
       .then((data) => {
         setTasks(data);
